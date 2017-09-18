@@ -28,11 +28,7 @@ router.get('/depend', function(req, res, next) {
     var dependencies = cache.get(name+"@"+version);
 
     if (dependencies != undefined) {
-      console.log("from cache:" + JSON.stringify(cached));
       cached = true;
-    }
-    else {
-      console.log("from cache:" + JSON.stringify(cached));
     }
 
     //try to get from db
@@ -47,7 +43,6 @@ router.get('/depend', function(req, res, next) {
           as: 'dependencies'
         }]
       });
-      console.log("obj:"+JSON.stringify(obj));
       if (obj.length == 1) {
         if (obj[0].dependencies.length > 0) {
           dependencies = _.map(obj[0].dependencies, function (e, i) {
@@ -55,14 +50,7 @@ router.get('/depend', function(req, res, next) {
             el[e.name] = e.semver;
             return el;
           })
-          // console.log ("from DB:"+ JSON.stringify(dependencies));
         }
-        else {
-          //no dependencies found
-        }
-      }
-      else {
-        //not found in db
       }
     }
 
