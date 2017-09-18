@@ -1,6 +1,3 @@
-// var request = require('request')
-var http = require('https');
-var URL = require('url').Url;
 var request = require('request-promise');
 
 exports.getDependenciesAndVersion = function(name, version) {
