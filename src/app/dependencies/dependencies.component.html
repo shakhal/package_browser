@@ -1,0 +1,14 @@
+<div class="dependencies">
+  <div>
+    <label>Name</label>
+    <input type="text" #name/>
+  </div>
+  <div>
+    <label>Version</label>
+    <input type="text" #version/>
+  </div>
+  <div>
+    <button (click)="show(name.value, version.value)">Show</button>
+  </div>
+  <tree #treeFonts [tree]="fonts"></tree>
+</div>
