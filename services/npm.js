@@ -5,17 +5,27 @@ exports.getDependenciesAndVersion = function(name, version) {
         version = 'latest';
     }
 
+    if (name.startsWith('@')) {
+      name = '@' + encodeURIComponent(name.substr(1));
+      version = '';
+    }
+
     var options = {
         uri : 'https://registry.npmjs.org/' + name + '/' + version,
-        json: true
+        json: true,
+        timeout: 20 * 1000
     };
 
     return request(options)
         .then(function(res){
-            return {
-                dependencies: Object.assign({}, res.dependencies, res.devDependencies),
-                version: res.version
-            };
+          if(res.versions){
+            res = res.versions[version];
+          }
+
+          return {
+              dependencies: Object.assign({}, res.dependencies, res.devDependencies),
+              version: res.version
+          };
         })
         .catch(function (e) {
             console.log("caught in npm");

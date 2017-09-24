@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "package1": "1.1.1",
+    "@org1/package2": "1.1.2"
+  },
+  "devDependencies": {
+    "devpackage2": "2.1.1"
+  },
+  "version": "1.0.0"
+}
